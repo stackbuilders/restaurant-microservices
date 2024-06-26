@@ -12,9 +12,11 @@ services:
       - mongo
     environment:
       MONGO_URL: mongodb://mongo:27017/stock_management
-      AMQP_URL:
+      AMQP_URL: amqp://192.168.100.113:5672
       NODE_ENV: development
       LOCAL_USER: piloto
+    depends_on:
+      - mongo
   mongo:
     image: mongo
     ports:

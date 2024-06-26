@@ -11,9 +11,11 @@ services:
       - ENV=development
       - PORT=4000
       - MONGO_URL=mongodb://mongo:27017/delivery_management
-      - AMQP_URL:
+      - AMQP_URL=amqp://192.168.100.113:5672
       - LOCAL_USER=piloto
     links:
+      - mongo
+    depends_on:
       - mongo
   mongo:
     image: mongo

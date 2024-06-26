@@ -1,5 +1,9 @@
 version: "3"
 services:
+  mongo:
+    image: mongo
+    ports:
+      - "27019:27017"
   cuisine:
     build: .
     command: nodemon start
@@ -12,10 +16,8 @@ services:
       - mongo
     environment:
       MONGO_URL: mongodb://mongo:27017/order_management
-      AMQP_URL:
+      AMQP_URL: amqp://192.168.100.113:5672
       NODE_ENV: development
       LOCAL_USER: piloto
-  mongo:
-    image: mongo
-    ports:
-      - "27019:27017"
+    depends_on:
+      - mongo
