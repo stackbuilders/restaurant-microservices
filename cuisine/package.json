@@ -16,7 +16,7 @@
   "author": "Pedro Piloto",
   "license": "ISC",
   "dependencies": {
-    "amqplib": "^0.5.3",
+    "amqplib": "0.8.0",
     "body-parser": "1.18.2",
     "create-singleton": "^0.0.4",
     "dotenv": "^7.0.0",

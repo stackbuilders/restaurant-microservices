@@ -8,7 +8,7 @@ import json
 
 def start():
     print("'Here")
-    url = '%2f'
+    url = '%2f' # Your AMQP url here.
     params = pika.URLParameters(url)
     params.socket_timeout = 5
 

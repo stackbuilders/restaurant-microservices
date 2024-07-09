@@ -3,7 +3,7 @@ import pika
 import sys
 
 
-url = 'amqp://root:p0p0p0p0@134.209.28.165:5672/%2f'
+url = 'amqp://root:p0p0p0p0@134.209.28.165:5672/%2f' # Your AMQP url here.
 params = pika.URLParameters(url)
 params.socket_timeout = 5
 

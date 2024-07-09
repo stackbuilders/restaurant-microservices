@@ -19,7 +19,7 @@ const start = () => {
 
   app.use(logger("dev"));
   app.use(bodyParser.urlencoded({ extended: false }));
-
+  app.use(bodyParser.json())
   app.get("/", function(req, res) {
     res.json({ tutorial: "Build REST API with node.js" });
   });

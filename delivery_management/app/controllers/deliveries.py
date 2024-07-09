@@ -1,15 +1,21 @@
 ''' controller and routes for deliveries '''
 import os
+import logger
+import json
 from flask import request, jsonify
+from bson import json_util
 from app import app, mongo
 
 
 @app.route('/delivery', methods=['GET', 'POST', 'DELETE'])
 def delivery():
+    ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
+    LOG = logger.get_root_logger(os.environ.get('ROOT_LOGGER', 'root'), filename=os.path.join(ROOT_PATH, 'deliveries-output.log'))
     if request.method == 'GET':
+        LOG.info(f'on GET delivery query args are : {query}')
         query = request.args
         data = mongo.db.deliveries.find_one(query)
-        return jsonify(data), 200
+        return json.loads(json_util.dumps(data))
 
     data = request.get_json()
     if request.method == 'POST':
