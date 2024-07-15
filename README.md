@@ -22,6 +22,62 @@ The projetct has 6 microservices that comunicate with each other using a message
     docker-compose run --service-ports <service_name>
     ```
 
+# Sample Workflow
+For Creating succesfully a new order we can follow these steps:
+
+1. Create a customer: POST `localhost:3001/customer` with the following data:
+
+    ```
+    {
+        "name": "Andres P",
+        "card_number": "123456",
+        "address": "Nayon"
+    }
+    ```
+2. Create a dish: POST `localhost:3002/dish` with the following data:
+
+    ```
+    {
+        "name": "Ceviche",
+        "ingredients": [
+            {
+                "code": "camaron",
+                "quantity": 6
+            },
+            {
+                "code": "limon",
+                "quantity": 3
+            }
+        ]
+    }
+    ```
+3. Create stock for the previous dish: POST `localhost:3003/stock` for the follwing data:
+
+    ```
+    {
+        "ingredient_code": "camaron",
+        "quantity": 10
+    }
+    ---
+    {
+        "ingredient_code": "limon",
+        "quantity": 10
+    }
+    ```
+
+4. Create a new Order, we need to make a POST request to `localhost:3004/order` with the following data:
+    ```
+    {
+        "customer_id": "<your_customer_id>",
+        "dish_id": "<your_dish_id>",
+        "released_on": "2024-07-09",
+        "type": 0
+    }
+    ```
+Following steps above should trigger the following events:
+
+![alt text](image.png)
+
 # Exercies
 In order to apply Event-Driven, Micro-services and APIs concepts you can work on this project and do some of these additional things.
 
